@@ -188,7 +188,7 @@ function closeModalOutside(e) {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 // ===== CONTACT FORM (Formspree backend) =====
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mqaevepy';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xaqaazqr';
 
 async function handleFormSubmit(e) {
   e.preventDefault();
