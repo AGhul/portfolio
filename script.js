@@ -263,3 +263,192 @@ window.addEventListener('scroll', () => {
   const heroBg = document.querySelector('.hero-bg');
   if (heroBg) heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
 });
+
+// ===== CUSTOM CURSOR =====
+const cursorDot = document.getElementById('cursor-dot');
+const cursorOutline = document.getElementById('cursor-outline');
+window.addEventListener('mousemove', (e) => {
+  const posX = e.clientX;
+  const posY = e.clientY;
+  if(cursorDot) {
+    cursorDot.style.left = `${posX}px`;
+    cursorDot.style.top = `${posY}px`;
+  }
+  if(cursorOutline) {
+    cursorOutline.animate({
+      left: `${posX}px`,
+      top: `${posY}px`
+    }, { duration: 500, fill: "forwards" });
+  }
+});
+
+// ===== SCROLL PROGRESS =====
+const scrollProgress = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+  if(!scrollProgress) return;
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  scrollProgress.style.width = scrollPercent + '%';
+});
+
+// ===== TYPED TEXT =====
+const typedTextEl = document.getElementById('typed-text');
+const words = ["Mechanical Engineering Student", "CAD Designer", "Creative Technologist", "Problem Solver"];
+let wordIdx = 0;
+let charIdx = 0;
+let isDeleting = false;
+
+function typeEffect() {
+  if(!typedTextEl) return;
+  const currentWord = words[wordIdx];
+  
+  if (isDeleting) {
+    charIdx--;
+  } else {
+    charIdx++;
+  }
+  
+  typedTextEl.textContent = currentWord.substring(0, charIdx);
+  
+  let typeSpeed = isDeleting ? 50 : 100;
+  
+  if (!isDeleting && charIdx === currentWord.length) {
+    typeSpeed = 2000;
+    isDeleting = true;
+  } else if (isDeleting && charIdx === 0) {
+    isDeleting = false;
+    wordIdx = (wordIdx + 1) % words.length;
+    typeSpeed = 500;
+  }
+  
+  setTimeout(typeEffect, typeSpeed);
+}
+if(typedTextEl) typeEffect();
+
+// ===== STATS COUNTER =====
+const stats = document.querySelectorAll('.num[data-target]');
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const target = parseInt(entry.target.getAttribute('data-target'));
+      let count = 0;
+      const speed = target / 40; 
+      const updateCount = () => {
+        count += speed;
+        if (count < target) {
+          entry.target.innerHTML = Math.ceil(count) + '<span>+</span>';
+          requestAnimationFrame(updateCount);
+        } else {
+          entry.target.innerHTML = target + '<span>+</span>';
+        }
+      };
+      updateCount();
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+stats.forEach(stat => statsObserver.observe(stat));
+
+// ===== STAGGERED FADE-UP DELAYS =====
+document.querySelectorAll('.skills-grid, .projects-grid, .achievements-grid, .tools-row, .cert-grid').forEach(grid => {
+  Array.from(grid.children).forEach((child, index) => {
+    if(child.classList.contains('fade-up')) {
+      child.style.setProperty('--delay', `${index * 100}ms`);
+    }
+  });
+});
+
+// ===== HERO CANVAS PARTICLES =====
+const canvas = document.getElementById('hero-canvas');
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  
+  let particlesArray = [];
+  const numberOfParticles = window.innerWidth < 768 ? 40 : 80;
+  
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+  
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 2 + 0.5;
+      this.speedX = Math.random() * 0.8 - 0.4;
+      this.speedY = Math.random() * 0.8 - 0.4;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.x > canvas.width) this.x = 0;
+      if (this.x < 0) this.x = canvas.width;
+      if (this.y > canvas.height) this.y = 0;
+      if (this.y < 0) this.y = canvas.height;
+    }
+    draw() {
+      ctx.fillStyle = 'rgba(59, 130, 246, 0.4)';
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  
+  function initParticles() {
+    for (let i = 0; i < numberOfParticles; i++) {
+      particlesArray.push(new Particle());
+    }
+  }
+  
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < particlesArray.length; i++) {
+      particlesArray[i].update();
+      particlesArray[i].draw();
+    }
+    // Connect particles
+    for (let a = 0; a < particlesArray.length; a++) {
+      for (let b = a; b < particlesArray.length; b++) {
+        let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + 
+                       ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+        if (distance < (canvas.width/10) * (canvas.height/10)) {
+          let opacity = 1 - (distance / ((canvas.width/10) * (canvas.height/10)));
+          ctx.strokeStyle = `rgba(59, 130, 246, ${opacity * 0.2})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+          ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animateParticles);
+  }
+  initParticles();
+  animateParticles();
+}
+
+// ===== 3D TILT EFFECT =====
+const tiltCards = document.querySelectorAll('.project-card, .skill-category, .achievement-card');
+tiltCards.forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+  });
+});
+
