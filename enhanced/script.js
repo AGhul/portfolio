@@ -112,6 +112,7 @@ const navLinksEl = document.getElementById('navLinks');
 
 hamburger.addEventListener('click', () => {
   navLinksEl.classList.toggle('open');
+  document.getElementById('navbar').classList.toggle('menu-open');
   const spans = hamburger.querySelectorAll('span');
   navLinksEl.classList.contains('open')
     ? (spans[0].style.transform = 'rotate(45deg) translate(5px,5px)', spans[1].style.opacity = '0', spans[2].style.transform = 'rotate(-45deg) translate(5px,-5px)')
@@ -121,6 +122,7 @@ hamburger.addEventListener('click', () => {
 navLinksEl.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => {
     navLinksEl.classList.remove('open');
+    document.getElementById('navbar').classList.remove('menu-open');
     const spans = hamburger.querySelectorAll('span');
     spans[0].style.transform = ''; spans[1].style.opacity = ''; spans[2].style.transform = '';
   });
