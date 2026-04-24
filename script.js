@@ -187,30 +187,67 @@ function closeModalOutside(e) {
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-// ===== CONTACT FORM =====
-function handleFormSubmit(e) {
+// ===== CONTACT FORM (Formspree backend) =====
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mqaevepy';
+
+async function handleFormSubmit(e) {
   e.preventDefault();
   const btn = document.getElementById('contactSubmitBtn');
-  const name = document.getElementById('contactName').value.trim();
-  const email = document.getElementById('contactEmail').value.trim();
-  const msg = document.getElementById('contactMessage').value.trim();
+  const name    = document.getElementById('contactName').value.trim();
+  const email   = document.getElementById('contactEmail').value.trim();
+  const subject = document.getElementById('contactSubject').value;
+  const msg     = document.getElementById('contactMessage').value.trim();
+
+  // Basic validation
   if (!name || !email || !msg) {
-    btn.textContent = '⚠️ Please fill all required fields';
+    btn.innerHTML = '⚠️ Please fill all required fields';
     btn.style.background = '#ef4444';
     setTimeout(() => { btn.innerHTML = 'Send Message ✉️'; btn.style.background = ''; }, 2500);
     return;
   }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    btn.innerHTML = '⚠️ Please enter a valid email address';
+    btn.style.background = '#ef4444';
+    setTimeout(() => { btn.innerHTML = 'Send Message ✉️'; btn.style.background = ''; }, 2500);
+    return;
+  }
+
   btn.innerHTML = '⏳ Sending...';
   btn.disabled = true;
-  setTimeout(() => {
-    btn.innerHTML = '✅ Message Sent!';
-    btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
-    document.getElementById('contactName').value = '';
-    document.getElementById('contactEmail').value = '';
-    document.getElementById('contactMessage').value = '';
-    document.getElementById('contactSubject').value = '';
-    setTimeout(() => { btn.innerHTML = 'Send Message ✉️'; btn.style.background = ''; btn.disabled = false; }, 3000);
-  }, 1500);
+
+  try {
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        subject: subject || 'Portfolio Contact Form',
+        message: msg,
+        _subject: `[Portfolio] ${subject || 'New message'} from ${name}`,
+      })
+    });
+
+    if (response.ok) {
+      btn.innerHTML = '✅ Message Sent!';
+      btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+      document.getElementById('contactName').value = '';
+      document.getElementById('contactEmail').value = '';
+      document.getElementById('contactMessage').value = '';
+      document.getElementById('contactSubject').value = '';
+      setTimeout(() => { btn.innerHTML = 'Send Message ✉️'; btn.style.background = ''; btn.disabled = false; }, 3500);
+    } else {
+      const data = await response.json();
+      const errMsg = (data && data.errors) ? data.errors.map(e => e.message).join(', ') : 'Submission failed. Please try again.';
+      btn.innerHTML = `⚠️ ${errMsg}`;
+      btn.style.background = '#ef4444';
+      setTimeout(() => { btn.innerHTML = 'Send Message ✉️'; btn.style.background = ''; btn.disabled = false; }, 4000);
+    }
+  } catch (err) {
+    btn.innerHTML = '⚠️ Network error — please try again';
+    btn.style.background = '#ef4444';
+    setTimeout(() => { btn.innerHTML = 'Send Message ✉️'; btn.style.background = ''; btn.disabled = false; }, 4000);
+  }
 }
 
 // ===== RESUME DOWNLOAD =====
