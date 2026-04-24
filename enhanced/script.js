@@ -267,20 +267,22 @@ window.addEventListener('scroll', () => {
 // ===== CUSTOM CURSOR =====
 const cursorDot = document.getElementById('cursor-dot');
 const cursorOutline = document.getElementById('cursor-outline');
-window.addEventListener('mousemove', (e) => {
-  const posX = e.clientX;
-  const posY = e.clientY;
-  if(cursorDot) {
-    cursorDot.style.left = `${posX}px`;
-    cursorDot.style.top = `${posY}px`;
-  }
-  if(cursorOutline) {
-    cursorOutline.animate({
-      left: `${posX}px`,
-      top: `${posY}px`
-    }, { duration: 500, fill: "forwards" });
-  }
-});
+if (window.matchMedia("(hover: hover)").matches) {
+  window.addEventListener('mousemove', (e) => {
+    const posX = e.clientX;
+    const posY = e.clientY;
+    if(cursorDot) {
+      cursorDot.style.left = `${posX}px`;
+      cursorDot.style.top = `${posY}px`;
+    }
+    if(cursorOutline) {
+      cursorOutline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+      }, { duration: 500, fill: "forwards" });
+    }
+  });
+}
 
 // ===== SCROLL PROGRESS =====
 const scrollProgress = document.getElementById('scroll-progress');
@@ -369,9 +371,13 @@ if (canvas) {
   let particlesArray = [];
   const numberOfParticles = window.innerWidth < 768 ? 40 : 80;
   
+  let lastWidth = window.innerWidth;
   window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    if (window.innerWidth !== lastWidth) {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      lastWidth = window.innerWidth;
+    }
   });
   
   class Particle {
@@ -434,21 +440,23 @@ if (canvas) {
 
 // ===== 3D TILT EFFECT =====
 const tiltCards = document.querySelectorAll('.project-card, .skill-category, .achievement-card');
-tiltCards.forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -8;
-    const rotateY = ((x - centerX) / centerX) * 8;
+if (window.matchMedia("(hover: hover)").matches) {
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -8;
+      const rotateY = ((x - centerX) / centerX) * 8;
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
     
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    });
   });
-  
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-  });
-});
+}
 
