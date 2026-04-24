@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Arnav Ghule – Mechanical Engineering Student | CAD Designer | Creative Technologist. Portfolio showcasing engineering projects, CAD work, poster design, and creative visuals.">
+<title>Arnav Ghule | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style2.css">
+</head>
+<body>
+<!-- CUSTOM CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-outline"></div>
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">AG<span>.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-floats">
+    <div class="hf hf1"></div><div class="hf hf2"></div>
+    <div class="hf hf3"></div><div class="hf hf4"></div>
+    <div class="hf hf5"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">⚡ Available for Internships & Collaborations</div>
+    <h1 class="hero-name">Arnav <span class="accent">Ghule</span></h1>
+    <p class="hero-title"><span id="typed-text"></span><span class="typed-cursor">|</span></p>
+    <p class="hero-desc">I bridge the gap between engineering precision and creative design — crafting technical work that's not just functional, but visually compelling and professionally presented.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">🗂️ View Portfolio</a>
+      <a href="#skills" class="btn-outline">⚙️ My Skills</a>
+      <a href="#contact" class="btn-secondary">✉️ Contact Me</a>
+    </div>
+    <div class="hero-stats" id="heroStats">
+      <div class="hero-stat"><span class="num" data-target="10">0<span>+</span></span><span class="label">Projects Done</span></div>
+      <div class="hero-stat"><span class="num" data-target="6">0<span>+</span></span><span class="label">Tools Mastered</span></div>
+      <div class="hero-stat"><span class="num" data-target="3">0<span>+</span></span><span class="label">Years of Design</span></div>
+    </div>
+  </div>
+  <div class="scroll-indicator"><span>Scroll</span><div class="scroll-arrow"></div></div>
+</section>
+
+<!-- ABOUT PREVIEW -->
+<section id="about" class="section section-alt">
+  <div class="container">
+    <div class="about-preview-grid">
+      <div class="about-img-wrap fade-up">
+        <img src="assets/profile_avatar.png" alt="Arnav Ghule profile">
+        <div class="about-img-glow"></div>
+      </div>
+      <div class="about-text fade-up">
+        <span class="section-tag">About Me</span>
+        <h2 class="section-title">Engineer. Designer.<br><span>Creator.</span></h2>
+        <div class="divider"></div>
+        <p>I'm <strong style="color:var(--white)">Arnav Ghule</strong>, a mechanical engineering student with a genuine passion for the intersection of technical knowledge and creative expression. Whether I'm working on a complex CAD assembly or designing an event poster, I approach every task with the same commitment — precision, clarity, and visual impact.</p>
+        <p>My work spans across <strong style="color:var(--orange)">engineering design, CAD modeling, poster and presentation design, branding, and video editing</strong>. I believe great technical work deserves great presentation, and I've spent years developing both sides of that equation.</p>
+        <p>I'm actively looking for opportunities to work on meaningful projects — internships, collaborations, and technical or creative roles where I can contribute real value.</p>
+        <div class="about-highlights">
+          <div class="highlight-item"><div class="icon">🏗️</div><h4>Engineering Focus</h4><p>CAD, mechanical design, technical visualization</p></div>
+          <div class="highlight-item"><div class="icon">🎨</div><h4>Creative Side</h4><p>Poster design, branding, video editing</p></div>
+          <div class="highlight-item"><div class="icon">📊</div><h4>Communication</h4><p>Technical reports, presentations, documentation</p></div>
+          <div class="highlight-item"><div class="icon">🚀</div><h4>Always Learning</h4><p>Exploring new tools, techniques, and workflows</p></div>
+        </div>
+        <a href="#contact" class="btn-primary">Let's Connect →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <span class="section-tag">What I Can Do</span>
+      <h2 class="section-title">My <span>Skills</span></h2>
+      <div class="divider center"></div>
+      <p class="section-desc">A versatile skillset spanning engineering, design, and communication — built through real projects and continuous learning.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-category fade-up">
+        <div class="skill-cat-icon eng">⚙️</div>
+        <div class="skill-cat-title">Engineering Skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag eng">AutoCAD</span>
+          <span class="skill-tag eng">Creo Parametric</span>
+          <span class="skill-tag eng">SolidWorks</span>
+          <span class="skill-tag eng">Engineering Drawing</span>
+          <span class="skill-tag eng">3D Modeling</span>
+          <span class="skill-tag eng">Technical Drafting</span>
+          <span class="skill-tag eng">Assembly Design</span>
+          <span class="skill-tag eng">Engineering Visualization</span>
+        </div>
+      </div>
+      <div class="skill-category fade-up">
+        <div class="skill-cat-icon soft">🖥️</div>
+        <div class="skill-cat-title">Software Skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag soft">Adobe Illustrator</span>
+          <span class="skill-tag soft">Adobe Premiere Pro</span>
+          <span class="skill-tag soft">Adobe Photoshop</span>
+          <span class="skill-tag soft">Canva</span>
+          <span class="skill-tag soft">MS PowerPoint</span>
+          <span class="skill-tag soft">MS Office Suite</span>
+          <span class="skill-tag soft">Google Workspace</span>
+        </div>
+      </div>
+      <div class="skill-category fade-up">
+        <div class="skill-cat-icon cre">🎨</div>
+        <div class="skill-cat-title">Creative Skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag cre">Poster Design</span>
+          <span class="skill-tag cre">Presentation Design</span>
+          <span class="skill-tag cre">Branding & Identity</span>
+          <span class="skill-tag cre">Video Editing</span>
+          <span class="skill-tag cre">Social Media Design</span>
+          <span class="skill-tag cre">Typography</span>
+          <span class="skill-tag cre">Visual Storytelling</span>
+          <span class="skill-tag cre">Infographic Design</span>
+        </div>
+      </div>
+      <div class="skill-category fade-up">
+        <div class="skill-cat-icon com">💬</div>
+        <div class="skill-cat-title">Communication Skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag com">Technical Communication</span>
+          <span class="skill-tag com">Creative Problem Solving</span>
+          <span class="skill-tag com">Team Collaboration</span>
+          <span class="skill-tag com">Project Planning</span>
+          <span class="skill-tag com">Client Briefing</span>
+          <span class="skill-tag com">Report Writing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools" class="section section-alt">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <span class="section-tag">My Toolkit</span>
+      <h2 class="section-title">Tools &amp; <span>Software</span></h2>
+      <div class="divider center"></div>
+    </div>
+    <div class="tools-row fade-up">
+      <div class="tool-chip"><span class="icon">📐</span> AutoCAD</div>
+      <div class="tool-chip"><span class="icon">🔩</span> Creo Parametric</div>
+      <div class="tool-chip"><span class="icon">🏗️</span> SolidWorks</div>
+      <div class="tool-chip"><span class="icon">✏️</span> Adobe Illustrator</div>
+      <div class="tool-chip"><span class="icon">🎬</span> Premiere Pro</div>
+      <div class="tool-chip"><span class="icon">🖼️</span> Photoshop</div>
+      <div class="tool-chip"><span class="icon">🎨</span> Canva</div>
+      <div class="tool-chip"><span class="icon">📊</span> PowerPoint</div>
+      <div class="tool-chip"><span class="icon">📁</span> Google Docs</div>
+      <div class="tool-chip"><span class="icon">🗂️</span> MS Office</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <span class="section-tag">My Work</span>
+      <h2 class="section-title">Featured <span>Projects</span></h2>
+      <div class="divider center"></div>
+      <p class="section-desc">Real work. Real tools. Real results. Here's a selection of projects that showcase my skills across engineering and creative design.</p>
+    </div>
+    <div class="projects-filter fade-up">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="engineering">Engineering</button>
+      <button class="filter-btn" data-filter="cad">CAD / Design</button>
+      <button class="filter-btn" data-filter="poster">Posters &amp; Presentations</button>
+      <button class="filter-btn" data-filter="branding">Branding</button>
+      <button class="filter-btn" data-filter="video">Video / Creative</button>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card fade-up" data-category="cad" data-project="0">
+        <div class="project-img"><img src="assets/project_cad.png" alt="CAD Assembly Design"><div class="project-cat-badge">CAD / Design</div></div>
+        <div class="project-body">
+          <h3 class="project-title">Mechanical Assembly Design</h3>
+          <p class="project-desc">Full 3D parametric assembly model with detailed component drawings and engineering annotations.</p>
+          <div class="project-tools"><span class="tool-badge">Creo Parametric</span><span class="tool-badge">SolidWorks</span><span class="tool-badge">AutoCAD</span></div>
+          <a href="#" class="project-link" onclick="openModal(0);return false;">View Details →</a>
+        </div>
+      </div>
+      <div class="project-card fade-up" data-category="poster" data-project="1">
+        <div class="project-img"><img src="assets/project_poster.png" alt="Event Poster Design"><div class="project-cat-badge">Posters &amp; Presentations</div></div>
+        <div class="project-body">
+          <h3 class="project-title">Technical Event Poster Series</h3>
+          <p class="project-desc">Designed a set of professional posters for engineering college events with consistent visual identity.</p>
+          <div class="project-tools"><span class="tool-badge">Illustrator</span><span class="tool-badge">Photoshop</span><span class="tool-badge">Canva</span></div>
+          <a href="#" class="project-link" onclick="openModal(1);return false;">View Details →</a>
+        </div>
+      </div>
+      <div class="project-card fade-up" data-category="branding" data-project="2">
+        <div class="project-img"><img src="assets/project_branding.png" alt="Branding Project"><div class="project-cat-badge">Branding</div></div>
+        <div class="project-body">
+          <h3 class="project-title">Brand Identity Design</h3>
+          <p class="project-desc">Developed complete brand identity including logo, color palette, typography system, and application mockups.</p>
+          <div class="project-tools"><span class="tool-badge">Illustrator</span><span class="tool-badge">Photoshop</span></div>
+          <a href="#" class="project-link" onclick="openModal(2);return false;">View Details →</a>
+        </div>
+      </div>
+      <div class="project-card fade-up" data-category="video" data-project="3">
+        <div class="project-img"><img src="assets/project_video.png" alt="Video Editing Project"><div class="project-cat-badge">Video / Creative</div></div>
+        <div class="project-body">
+          <h3 class="project-title">Event Highlight Reel</h3>
+          <p class="project-desc">Produced and edited a promotional highlight video for a major college technical festival with motion graphics.</p>
+          <div class="project-tools"><span class="tool-badge">Premiere Pro</span><span class="tool-badge">Photoshop</span></div>
+          <a href="#" class="project-link" onclick="openModal(3);return false;">View Details →</a>
+        </div>
+      </div>
+      <div class="project-card fade-up" data-category="engineering" data-project="4">
+        <div class="project-img"><img src="assets/project_cad.png" alt="Engineering Project"><div class="project-cat-badge">Engineering</div></div>
+        <div class="project-body">
+          <h3 class="project-title">Engineering Drawing Set</h3>
+          <p class="project-desc">Comprehensive technical drawing documentation for a mechanical system with GD&T and tolerancing.</p>
+          <div class="project-tools"><span class="tool-badge">AutoCAD</span><span class="tool-badge">Creo</span></div>
+          <a href="#" class="project-link" onclick="openModal(4);return false;">View Details →</a>
+        </div>
+      </div>
+      <div class="project-card fade-up" data-category="poster" data-project="5">
+        <div class="project-img"><img src="assets/project_branding.png" alt="Presentation Design"><div class="project-cat-badge">Presentations</div></div>
+        <div class="project-body">
+          <h3 class="project-title">Technical Presentation Design</h3>
+          <p class="project-desc">Designed a high-impact, visually polished presentation deck for a competitive technical pitch.</p>
+          <div class="project-tools"><span class="tool-badge">PowerPoint</span><span class="tool-badge">Canva</span><span class="tool-badge">Illustrator</span></div>
+          <a href="#" class="project-link" onclick="openModal(5);return false;">View Details →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume" class="section section-alt">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <span class="section-tag">My Background</span>
+      <h2 class="section-title">Resume &amp; <span>Experience</span></h2>
+      <div class="divider center"></div>
+    </div>
+    <div class="resume-layout fade-up">
+      <div class="resume-col">
+        <h3>Education</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot">🎓</div>
+            <div class="timeline-content">
+              <h4>B.E. Mechanical Engineering</h4>
+              <div class="org">College of Engineering, Pune</div>
+              <div class="year">2022 – 2026</div>
+              <p>Focusing on CAD design, manufacturing processes, and engineering mechanics. Active member of design and technical clubs.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot">📚</div>
+            <div class="timeline-content">
+              <h4>Higher Secondary Certificate (HSC)</h4>
+              <div class="org">Maharashtra State Board</div>
+              <div class="year">2020 – 2022</div>
+              <p>Science stream with Physics, Chemistry, and Mathematics. Strong academic foundation in applied sciences.</p>
+            </div>
+          </div>
+        </div>
+        <br>
+        <h3>Experience</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot">🎨</div>
+            <div class="timeline-content">
+              <h4>Creative & Design Lead</h4>
+              <div class="org">College Technical Club / Events</div>
+              <div class="year">2023 – Present</div>
+              <p>Led poster design, branding, and visual communication for multiple technical and cultural events. Managed end-to-end creative output.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot">🛠️</div>
+            <div class="timeline-content">
+              <h4>CAD Design Projects</h4>
+              <div class="org">Academic & Personal Projects</div>
+              <div class="year">2022 – Present</div>
+              <p>Created multiple 2D and 3D design models using AutoCAD, Creo, and SolidWorks for coursework and independent projects.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="resume-col">
+        <h3>Certifications</h3>
+        <div class="cert-grid">
+          <div class="cert-item"><div class="cert-icon">📐</div><div class="cert-info"><h4>AutoCAD Certified User</h4><p>Autodesk — 2023</p></div></div>
+          <div class="cert-item"><div class="cert-icon">✏️</div><div class="cert-info"><h4>Adobe Illustrator Essentials</h4><p>Adobe — 2023</p></div></div>
+          <div class="cert-item"><div class="cert-icon">🎬</div><div class="cert-info"><h4>Video Editing with Premiere Pro</h4><p>Online Course — 2022</p></div></div>
+          <div class="cert-item"><div class="cert-icon">🏗️</div><div class="cert-info"><h4>SolidWorks Fundamentals</h4><p>SOLIDWORKS — 2024</p></div></div>
+          <div class="cert-item"><div class="cert-icon">📊</div><div class="cert-info"><h4>Design Thinking Fundamentals</h4><p>IDEO / Coursera — 2023</p></div></div>
+        </div>
+        <br>
+        <div class="resume-download">
+          <h3 style="font-family:'Poppins',sans-serif;font-size:1.2rem;color:var(--white);margin-bottom:.75rem">📄 Want the full picture?</h3>
+          <p>Download my resume for a complete overview of my education, skills, projects, and achievements.</p>
+          <a href="#" class="btn-primary" id="downloadResumeBtn">⬇️ Download Resume (PDF)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="section">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <span class="section-tag">Recognition</span>
+      <h2 class="section-title">Achievements &amp; <span>Highlights</span></h2>
+      <div class="divider center"></div>
+    </div>
+    <div class="achievements-grid">
+      <div class="achievement-card fade-up">
+        <div class="ach-icon">🏆</div>
+        <h3 class="ach-title">Best Design Award – Technical Fest</h3>
+        <p class="ach-desc">Recognized for outstanding poster and visual design work at the annual college technical festival, competing against 50+ entries.</p>
+        <span class="ach-tag">Design Excellence</span>
+      </div>
+      <div class="achievement-card fade-up">
+        <div class="ach-icon">🥇</div>
+        <h3 class="ach-title">CAD Competition – Top Performer</h3>
+        <p class="ach-desc">Achieved top ranking in an inter-college CAD modeling competition, demonstrating speed, accuracy, and design quality.</p>
+        <span class="ach-tag">Engineering</span>
+      </div>
+      <div class="achievement-card fade-up">
+        <div class="ach-icon">🎖️</div>
+        <h3 class="ach-title">Creative Lead – 3 Major Events</h3>
+        <p class="ach-desc">Led the creative and visual communication team for 3 large-scale college events, handling all branding, posters, and digital media.</p>
+        <span class="ach-tag">Leadership</span>
+      </div>
+      <div class="achievement-card fade-up">
+        <div class="ach-icon">📜</div>
+        <h3 class="ach-title">5+ Software Certifications</h3>
+        <p class="ach-desc">Earned certifications in AutoCAD, Illustrator, Premiere Pro, SolidWorks, and Design Thinking through structured online and offline programs.</p>
+        <span class="ach-tag">Continuous Learning</span>
+      </div>
+      <div class="achievement-card fade-up">
+        <div class="ach-icon">🎬</div>
+        <h3 class="ach-title">Video Production – 10K+ Views</h3>
+        <p class="ach-desc">Produced event highlight videos that gained significant organic engagement on social media, demonstrating real-world impact.</p>
+        <span class="ach-tag">Creative Media</span>
+      </div>
+      <div class="achievement-card fade-up">
+        <div class="ach-icon">🌐</div>
+        <h3 class="ach-title">Built This Portfolio Website</h3>
+        <p class="ach-desc">Designed and developed this entire portfolio from scratch — combining engineering problem-solving with modern design principles.</p>
+        <span class="ach-tag">Self-Initiated</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section section-alt">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <span class="section-tag">Get In Touch</span>
+      <h2 class="section-title">Let's <span>Connect</span></h2>
+      <div class="divider center"></div>
+      <p class="section-desc">I'm open to internships, collaborations, creative projects, and technical opportunities. Let's build something great together.</p>
+    </div>
+    <div class="contact-layout fade-up">
+      <div class="contact-info">
+        <h3>Ready to work together?</h3>
+        <p>Whether you have a project in mind, an internship opportunity, or just want to talk design and engineering — I'd love to hear from you.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="c-icon">📧</div>
+            <div class="c-text"><span>Email</span><a href="mailto:ghulearnav20@gmail.com">ghulearnav20@gmail.com</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon">💼</div>
+            <div class="c-text"><span>LinkedIn</span><a href="https://www.linkedin.com/in/arnav-ghule-78b34b26b" target="_blank">linkedin.com/in/arnav-ghule</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon">📱</div>
+            <div class="c-text"><span>Instagram</span><a href="https://www.instagram.com/arnav_ghule_19" target="_blank">@arnav_ghule_19</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon">📍</div>
+            <div class="c-text"><span>Location</span><p>Pune, Maharashtra, India</p></div>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/arnav-ghule-78b34b26b" target="_blank" class="social-btn" title="LinkedIn">in</a>
+          <a href="https://www.instagram.com/arnav_ghule_19" target="_blank" class="social-btn" title="Instagram">📸</a>
+          <a href="#" class="social-btn" title="GitHub">⌨️</a>
+          <a href="mailto:ghulearnav20@gmail.com" class="social-btn" title="Email">✉️</a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group"><label>Your Name</label><input id="contactName" type="text" placeholder="John Doe"></div>
+          <div class="form-group"><label>Email Address</label><input id="contactEmail" type="email" placeholder="you@email.com"></div>
+        </div>
+        <div class="form-group"><label>Subject</label>
+          <select id="contactSubject">
+            <option value="">Select a topic...</option>
+            <option>Internship Opportunity</option>
+            <option>Collaboration Project</option>
+            <option>Design / Creative Work</option>
+            <option>Technical Project</option>
+            <option>Just Saying Hi!</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Message</label><textarea id="contactMessage" placeholder="Tell me about your project or opportunity..."></textarea></div>
+        <button class="form-submit" id="contactSubmitBtn" onclick="handleFormSubmit(event)">Send Message ✉️</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#hero" class="nav-logo">AG<span>.</span></a>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p class="footer-copy">© 2026 Arnav Ghule. Built with ❤️ &amp; precision.</p>
+  </div>
+</footer>
+
+<!-- PROJECT MODAL -->
+<div class="modal-overlay" id="projectModal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">Project Title</h2>
+      <button class="modal-close" id="modalClose" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <img id="modalImg" src="" alt="Project preview">
+      <div class="modal-meta" id="modalMeta"></div>
+      <div class="modal-section"><h4>Overview</h4><p id="modalOverview"></p></div>
+      <div class="modal-section"><h4>Objective</h4><p id="modalObjective"></p></div>
+      <div class="modal-section"><h4>My Role &amp; Process</h4><p id="modalProcess"></p></div>
+      <div class="modal-section"><h4>Outcome</h4><p id="modalOutcome"></p></div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js?v=3"></script>
+</body>
+</html>
