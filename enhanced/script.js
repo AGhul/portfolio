@@ -444,14 +444,17 @@ if (canvas) {
 const tiltCards = document.querySelectorAll('.project-card, .skill-category, .achievement-card, .tool-chip');
 if (window.matchMedia("(hover: hover)").matches) {
   tiltCards.forEach(card => {
+    let leaveTimeout; // Track the timeout to prevent rapid-hover race conditions
+    
     card.addEventListener('mouseenter', () => {
-      // Keep color/shadow transitions active, but remove transform transition for instant tracking
-      card.style.transition = 'box-shadow 0.3s, background 0.3s, color 0.3s, border-color 0.3s';
+      clearTimeout(leaveTimeout); // Cancel any pending reset to prevent glitches
       
-      // Also prep inner skill tags if this is a category card
+      // Fast transition smooths the initial entry snap and tracks the cursor flawlessly
+      card.style.transition = 'transform 0.15s ease-out, box-shadow 0.3s, background 0.3s, color 0.3s, border-color 0.3s';
+      
       if (card.classList.contains('skill-category')) {
         card.querySelectorAll('.skill-tag').forEach(tag => {
-          tag.style.transition = 'box-shadow 0.3s, background 0.3s, color 0.3s, border-color 0.3s';
+          tag.style.transition = 'transform 0.15s ease-out, box-shadow 0.3s, background 0.3s, color 0.3s, border-color 0.3s';
         });
       }
     });
@@ -471,20 +474,18 @@ if (window.matchMedia("(hover: hover)").matches) {
         scale = 1.05;
       }
       
-      // Calculate rotation
       let rawRotateX = ((y - centerY) / centerY) * -multiplier;
       let rawRotateY = ((x - centerX) / centerX) * multiplier;
       
-      // CRITICAL FIX: Clamp rotation to prevent the math explosion (180-degree flipped text bug)
+      // Clamp to prevent mathematical 180-degree flips
       const rotateX = Math.max(-20, Math.min(20, rawRotateX));
       const rotateY = Math.max(-20, Math.min(20, rawRotateY));
       
       requestAnimationFrame(() => {
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scale}, ${scale}, ${scale})`;
         
-        // Parallax inner skill tags so they float dynamically with the cursor!
         if (card.classList.contains('skill-category')) {
-          const tx = ((x - centerX) / centerX) * -12; // Move slightly opposite to cursor
+          const tx = ((x - centerX) / centerX) * -12;
           const ty = ((y - centerY) / centerY) * -12;
           card.querySelectorAll('.skill-tag').forEach(tag => {
             tag.style.transform = `translate3d(${tx}px, ${ty}px, 20px) scale(1.03)`;
@@ -494,20 +495,30 @@ if (window.matchMedia("(hover: hover)").matches) {
     });
     
     card.addEventListener('mouseleave', () => {
+      // Glide back to rest smoothly
       card.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s, background 0.3s, color 0.3s, border-color 0.3s';
       requestAnimationFrame(() => {
         card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
       });
-      setTimeout(() => { card.style.transition = ''; }, 600);
       
-      // Restore inner skill tags smoothly
       if (card.classList.contains('skill-category')) {
         card.querySelectorAll('.skill-tag').forEach(tag => {
           tag.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s, background 0.3s, color 0.3s, border-color 0.3s';
           requestAnimationFrame(() => { tag.style.transform = `translate3d(0px, 0px, 0px) scale(1)`; });
-          setTimeout(() => { tag.style.transition = ''; }, 600);
         });
       }
+      
+      // Fully strip inline styles after transition so CSS :hover works again!
+      leaveTimeout = setTimeout(() => { 
+        card.style.transition = ''; 
+        card.style.transform = ''; 
+        if (card.classList.contains('skill-category')) {
+          card.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.style.transition = '';
+            tag.style.transform = '';
+          });
+        }
+      }, 600);
     });
   });
 }
