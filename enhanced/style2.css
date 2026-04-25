@@ -234,13 +234,10 @@ body:has(.skill-category:hover) #cursor-outline {
 }
 
 /* ==============================
-   PROJECT CATEGORY BADGE GLOW
+   PROJECT CATEGORY BADGE
    ============================== */
 .project-cat-badge {
-  animation: none; transition: all .3s;
-}
-.project-card:hover .project-cat-badge {
-  background: rgba(59,130,246,.25); border-color: rgba(59,130,246,.5); color: #93c5fd;
+  animation: none; transition: transform .3s ease;
 }
 
 /* ==============================
