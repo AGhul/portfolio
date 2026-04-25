@@ -380,6 +380,7 @@ footer .nav-logo:hover { text-shadow: 0 0 20px rgba(249,115,22,.5); }
 /* ==============================
    SECTION TITLE GRADIENT UNDERLINE
    ============================== */
+.section-tag { display: block; } /* Prevents floating next to inline-block titles */
 .section-title {
   position: relative; display: inline-block; padding-bottom: 5px; margin-bottom: 1.5rem;
 }
