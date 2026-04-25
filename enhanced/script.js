@@ -451,12 +451,6 @@ if (window.matchMedia("(hover: hover)").matches) {
       
       // Fast transition smooths the initial entry snap and tracks the cursor flawlessly
       card.style.transition = 'transform 0.15s ease-out, box-shadow 0.3s, background 0.3s, color 0.3s, border-color 0.3s';
-      
-      if (card.classList.contains('skill-category')) {
-        card.querySelectorAll('.skill-tag').forEach(tag => {
-          tag.style.transition = 'transform 0.15s ease-out, box-shadow 0.3s, background 0.3s, color 0.3s, border-color 0.3s';
-        });
-      }
     });
     
     card.addEventListener('mousemove', e => {
@@ -483,14 +477,6 @@ if (window.matchMedia("(hover: hover)").matches) {
       
       requestAnimationFrame(() => {
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scale}, ${scale}, ${scale})`;
-        
-        if (card.classList.contains('skill-category')) {
-          const tx = ((x - centerX) / centerX) * -12;
-          const ty = ((y - centerY) / centerY) * -12;
-          card.querySelectorAll('.skill-tag').forEach(tag => {
-            tag.style.transform = `translate3d(${tx}px, ${ty}px, 20px) scale(1.03)`;
-          });
-        }
       });
     });
     
@@ -501,23 +487,10 @@ if (window.matchMedia("(hover: hover)").matches) {
         card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
       });
       
-      if (card.classList.contains('skill-category')) {
-        card.querySelectorAll('.skill-tag').forEach(tag => {
-          tag.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s, background 0.3s, color 0.3s, border-color 0.3s';
-          requestAnimationFrame(() => { tag.style.transform = `translate3d(0px, 0px, 0px) scale(1)`; });
-        });
-      }
-      
       // Fully strip inline styles after transition so CSS :hover works again!
       leaveTimeout = setTimeout(() => { 
         card.style.transition = ''; 
         card.style.transform = ''; 
-        if (card.classList.contains('skill-category')) {
-          card.querySelectorAll('.skill-tag').forEach(tag => {
-            tag.style.transition = '';
-            tag.style.transform = '';
-          });
-        }
       }, 600);
     });
   });
