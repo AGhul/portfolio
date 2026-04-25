@@ -31,8 +31,8 @@ body:has(.skill-category:hover) #cursor-dot::before, body:has(.skill-category:ho
   background: var(--accent2);
 }
 
-@media (hover: none) {
-  #cursor-dot { display: none; }
+@media (max-width: 768px), (pointer: coarse), (hover: none) {
+  #cursor-dot, #cursor-outline { display: none !important; opacity: 0 !important; visibility: hidden !important; }
 }
 
 /* ==============================
