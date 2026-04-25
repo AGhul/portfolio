@@ -157,6 +157,7 @@ body:has(.skill-category:hover) #cursor-outline {
   position: relative; overflow: hidden;
   transition: box-shadow .4s cubic-bezier(.23,1,.32,1), border-color .4s cubic-bezier(.23,1,.32,1), opacity .4s;
   transform-style: preserve-3d;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 .skill-category::before {
   content: ''; position: absolute; inset: 0;
@@ -216,6 +217,11 @@ body:has(.skill-category:hover) #cursor-outline {
   transform-style: preserve-3d;
   transform: perspective(1000px) rotateX(0) rotateY(0);
   transition: box-shadow .35s, border-color .35s;
+  -webkit-mask-image: -webkit-radial-gradient(white, black); /* CRITICAL FIX: Forces border-radius clipping during 3D transforms */
+}
+.project-img {
+  border-top-left-radius: 15px; /* Explicitly round the image container corners */
+  border-top-right-radius: 15px;
 }
 .project-card .project-img::after {
   content: ''; position: absolute; inset: 0;
@@ -261,6 +267,7 @@ body:has(.skill-category:hover) #cursor-outline {
   transition: box-shadow .4s cubic-bezier(.23,1,.32,1), border-color .4s;
   position: relative;
   transform-style: preserve-3d;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 .achievement-card::after {
   content: ''; position: absolute; inset: -1px; border-radius: inherit;
