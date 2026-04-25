@@ -445,35 +445,48 @@ const tiltCards = document.querySelectorAll('.project-card, .skill-category, .ac
 if (window.matchMedia("(hover: hover)").matches) {
   tiltCards.forEach(card => {
     card.addEventListener('mouseenter', () => {
-      card.style.transition = 'none'; // Kill CSS transition to prevent jitter
+      // Keep color/shadow transitions active, but remove transform transition for instant tracking
+      card.style.transition = 'box-shadow 0.3s, background 0.3s, color 0.3s, border-color 0.3s';
     });
     
     card.addEventListener('mousemove', e => {
+      e.stopPropagation(); // CRITICAL: Stop child tags from making parent cards jitter!
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
       
-      // Calculate rotation (more extreme for smaller tags, subtle for big cards)
-      const multiplier = card.classList.contains('skill-tag') ? 15 : 8;
+      let multiplier = 8;
+      let translateZ = 0;
+      let scale = 1.02;
+      
+      // Dynamic physics based on element type
+      if (card.classList.contains('skill-tag')) {
+        multiplier = 25;   // Faster tilt for small items
+        translateZ = 15;   // True 3D pop off the parent
+        scale = 1.08;      // Noticeable size increase
+      } else if (card.classList.contains('tool-chip')) {
+        multiplier = 15;
+        translateZ = 10;
+        scale = 1.05;
+      }
+      
       const rotateX = ((y - centerY) / centerY) * -multiplier;
       const rotateY = ((x - centerX) / centerX) * multiplier;
       
-      // Use requestAnimationFrame for buttery smooth performance
       requestAnimationFrame(() => {
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        card.style.transform = `perspective(1000px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scale}, ${scale}, ${scale})`;
       });
     });
     
     card.addEventListener('mouseleave', () => {
-      // Restore smooth CSS transition for the return journey
-      card.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
+      // Restore smooth transform transition so it glides back to rest
+      card.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s, background 0.3s, color 0.3s, border-color 0.3s';
       requestAnimationFrame(() => {
-        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        card.style.transform = `perspective(1000px) translateZ(0px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
       });
-      // Clear inline transition after it finishes so hover CSS works again
-      setTimeout(() => card.style.transition = '', 500);
+      setTimeout(() => { card.style.transition = ''; }, 600);
     });
   });
 }
