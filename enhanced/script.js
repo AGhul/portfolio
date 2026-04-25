@@ -441,23 +441,39 @@ if (canvas) {
 }
 
 // ===== 3D TILT EFFECT =====
-const tiltCards = document.querySelectorAll('.project-card, .skill-category, .achievement-card');
+const tiltCards = document.querySelectorAll('.project-card, .skill-category, .achievement-card, .skill-tag, .tool-chip');
 if (window.matchMedia("(hover: hover)").matches) {
   tiltCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'none'; // Kill CSS transition to prevent jitter
+    });
+    
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -8;
-      const rotateY = ((x - centerX) / centerX) * 8;
       
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      // Calculate rotation (more extreme for smaller tags, subtle for big cards)
+      const multiplier = card.classList.contains('skill-tag') ? 15 : 8;
+      const rotateX = ((y - centerY) / centerY) * -multiplier;
+      const rotateY = ((x - centerX) / centerX) * multiplier;
+      
+      // Use requestAnimationFrame for buttery smooth performance
+      requestAnimationFrame(() => {
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
     });
     
     card.addEventListener('mouseleave', () => {
-      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      // Restore smooth CSS transition for the return journey
+      card.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
+      requestAnimationFrame(() => {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      });
+      // Clear inline transition after it finishes so hover CSS works again
+      setTimeout(() => card.style.transition = '', 500);
     });
   });
 }

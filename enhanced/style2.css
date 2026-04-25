@@ -155,7 +155,8 @@ body:has(.skill-category:hover) #cursor-outline {
    ============================== */
 .skill-category {
   position: relative; overflow: hidden;
-  transition: all .4s cubic-bezier(.23,1,.32,1);
+  transition: box-shadow .4s cubic-bezier(.23,1,.32,1), border-color .4s cubic-bezier(.23,1,.32,1), opacity .4s;
+  transform-style: preserve-3d;
 }
 .skill-category::before {
   content: ''; position: absolute; inset: 0;
@@ -172,7 +173,8 @@ body:has(.skill-category:hover) #cursor-outline {
 .skill-category:hover::after { left: 150%; }
 .skill-tag {
   position: relative; overflow: hidden;
-  transition: all .3s cubic-bezier(.23,1,.32,1);
+  transition: box-shadow .3s cubic-bezier(.23,1,.32,1), background .3s, color .3s, border-color .3s;
+  transform-style: preserve-3d;
 }
 .skill-tag::after {
   content: ''; position: absolute; inset: 0;
@@ -187,9 +189,10 @@ body:has(.skill-category:hover) #cursor-outline {
    ============================== */
 .tool-chip {
   position: relative; overflow: hidden;
-  transition: all .35s cubic-bezier(.23,1,.32,1);
+  transition: box-shadow .35s cubic-bezier(.23,1,.32,1), border-color .35s, color .35s, background .35s;
   animation: chipEntrance .6s ease both;
   animation-delay: var(--d, 0s);
+  transform-style: preserve-3d;
 }
 @keyframes chipEntrance {
   from { opacity:0; transform: scale(.8) translateY(10px); }
@@ -255,8 +258,9 @@ body:has(.skill-category:hover) #cursor-outline {
    ACHIEVEMENT CARDS ENHANCED
    ============================== */
 .achievement-card {
-  transition: all .4s cubic-bezier(.23,1,.32,1);
+  transition: box-shadow .4s cubic-bezier(.23,1,.32,1), border-color .4s;
   position: relative;
+  transform-style: preserve-3d;
 }
 .achievement-card::after {
   content: ''; position: absolute; inset: -1px; border-radius: inherit;
