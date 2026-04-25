@@ -380,13 +380,13 @@ footer .nav-logo:hover { text-shadow: 0 0 20px rgba(249,115,22,.5); }
 /* ==============================
    SECTION TITLE GRADIENT UNDERLINE
    ============================== */
-.section-title span {
-  position: relative; display: inline-block;
+.section-title {
+  position: relative; display: inline-block; padding-bottom: 5px; margin-bottom: 1.5rem;
 }
-.section-title span::after {
-  content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 3px;
+.section-title::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
   background: linear-gradient(90deg, var(--orange), var(--blue));
-  border-radius: 2px; transform: scaleX(0); transform-origin: left;
+  border-radius: 2px; transform: scaleX(0); transform-origin: center;
   transition: transform .6s ease; animation: underlineIn .8s .5s ease forwards;
 }
 @keyframes underlineIn {
